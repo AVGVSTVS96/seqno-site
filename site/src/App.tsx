@@ -218,6 +218,9 @@ function Footer() {
       <span>
         by <a href={bassim}>bassim</a>
       </span>
+      <span>
+        Hero inspired by <a href="https://buzz.xyz">Buzz</a>
+      </span>
       <span>Not affiliated with Logseq.</span>
     </footer>
   )
