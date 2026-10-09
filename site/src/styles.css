@@ -61,7 +61,7 @@
   --mono: "Commit Mono", "Mono fallback", ui-monospace, Menlo, monospace;
 
   --apricot: #f8aa6d;
-  --ember: #492515;
+  --dusk: #01222c;
   --paper: #fdf9f4;
   --surface: #ffffff;
   --sunk: #f8f1ea;
@@ -75,8 +75,11 @@
 
   --field: var(--apricot);
   --field-ink: #25170d;
+  --field-faint: var(--field-ink);
   --bullet: #fff8ed;
   --grid-dot: rgb(37 23 13 / 0.2);
+  --line-opacity: 0.5;
+  --selection: color-mix(in oklab, var(--apricot) 55%, transparent);
 
   --grid: 24px;
   --gap: 120px;
@@ -174,21 +177,24 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #140f0c;
-    --surface: #1e1814;
-    --sunk: #1a1511;
+    --paper: #02141b;
+    --surface: #002b36;
+    --sunk: #01222c;
     --ink: #f1eae3;
-    --ink-2: #b5aca4;
-    --ink-3: #887e77;
+    --ink-2: #a3b5b8;
+    --ink-3: #7e9094;
     --hair: rgb(241 234 227 / 0.12);
     --hair-2: rgb(241 234 227 / 0.06);
     --rust: var(--apricot);
-    --shadow: rgb(0 0 0 / 0.6);
+    --shadow: rgb(0 0 0 / 0.55);
 
-    --field: var(--ember);
+    --field: var(--dusk);
     --field-ink: var(--apricot);
+    --field-faint: var(--ink);
     --bullet: #f4d9c0;
-    --grid-dot: rgb(248 170 109 / 0.22);
+    --grid-dot: rgb(241 234 227 / 0.14);
+    --line-opacity: 0.8;
+    --selection: #094b5a;
   }
 }
 
@@ -214,7 +220,7 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--apricot) 55%, transparent);
+  background: var(--selection);
 }
 
 h1,
@@ -306,7 +312,7 @@ code {
   top: 0;
   bottom: 4px;
   width: 1px;
-  background: color-mix(in oklab, currentColor 30%, transparent);
+  background: color-mix(in oklab, var(--faint, currentColor) 30%, transparent);
 }
 
 .pills {
@@ -339,12 +345,12 @@ code {
 .pill.ghost {
   background: transparent;
   color: var(--pill);
-  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--pill) 30%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--faint, var(--pill)) 30%, transparent);
   transition: box-shadow 0.16s var(--ease);
 }
 
 .pill.ghost:hover {
-  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--pill) 60%, transparent);
+  box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--faint, var(--pill)) 60%, transparent);
 }
 
 .pill:focus-visible {
@@ -365,6 +371,7 @@ code {
   overflow: hidden;
   isolation: isolate;
   --rust: var(--field-ink);
+  --faint: var(--field-faint);
 }
 
 .hero canvas {
@@ -471,7 +478,7 @@ code {
 
 .browser {
   font: 400 15px/24px var(--text);
-  color: color-mix(in oklab, var(--field-ink) 76%, var(--field));
+  color: color-mix(in oklab, var(--faint) 76%, var(--field));
 }
 
 .browser span {
@@ -544,7 +551,7 @@ code {
   color: inherit;
   text-decoration: none;
   border-radius: 5px;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 30%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--faint, currentColor) 30%, transparent);
   font: 500 13px/22px var(--mono);
   letter-spacing: 0;
   overflow: hidden;
@@ -552,7 +559,7 @@ code {
 }
 
 .odo a:hover {
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 55%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--faint, currentColor) 55%, transparent);
 }
 
 .odo .no {
@@ -560,7 +567,7 @@ code {
   font-weight: 400;
   font-size: 11px;
   letter-spacing: 0.04em;
-  box-shadow: inset -1px 0 color-mix(in oklab, currentColor 20%, transparent);
+  box-shadow: inset -1px 0 color-mix(in oklab, var(--faint, currentColor) 20%, transparent);
 }
 
 .odo .digits {
@@ -576,7 +583,7 @@ code {
 }
 
 .odo .cell + .cell {
-  box-shadow: inset 1px 0 color-mix(in oklab, currentColor 14%, transparent);
+  box-shadow: inset 1px 0 color-mix(in oklab, var(--faint, currentColor) 14%, transparent);
 }
 
 .odo .strip {

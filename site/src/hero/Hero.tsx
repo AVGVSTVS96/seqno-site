@@ -20,7 +20,12 @@ function avoidRects(hero: HTMLElement): Array<Box> {
 function colorsOf(hero: HTMLElement) {
   const style = getComputedStyle(hero)
   const read = (name: string) => style.getPropertyValue(name).trim()
-  return { field: read("--field"), bullet: read("--bullet"), ink: read("--field-ink") }
+  return {
+    field: read("--field"),
+    bullet: read("--bullet"),
+    ink: read("--field-ink"),
+    line: Number(read("--line-opacity")),
+  }
 }
 
 const smooth = (x: number) => x * x * (3 - 2 * x)

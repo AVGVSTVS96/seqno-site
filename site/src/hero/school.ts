@@ -9,6 +9,7 @@ export interface Colors {
   readonly field: string
   readonly bullet: string
   readonly ink: string
+  readonly line: number
 }
 
 interface Bullet {
@@ -112,7 +113,7 @@ const settledness = (b: Bullet) =>
 export function createSchool(canvas: HTMLCanvasElement, seed = 7) {
   const ctx = canvas.getContext("2d")
   const pointer = { x: -1e4, y: -1e4, vx: 0, vy: 0, inside: false, moved: false }
-  let colors: Colors = { field: "#F8AA6D", bullet: "#FFF8ED", ink: "#25170D" }
+  let colors: Colors = { field: "#F8AA6D", bullet: "#FFF8ED", ink: "#25170D", line: 0.5 }
   let width = 0
   let height = 0
   let dpr = 1
@@ -281,7 +282,7 @@ export function createSchool(canvas: HTMLCanvasElement, seed = 7) {
         ctx.globalAlpha = s
         ctx.fillStyle = colors.field
         ctx.fillRect(b.x + 9, b.y - 3.5, bw + 4, 7)
-        ctx.globalAlpha = 0.5 * s
+        ctx.globalAlpha = colors.line * s
         ctx.fillStyle = tone
         ctx.beginPath()
         ctx.roundRect(b.x + 11, b.y - 1.5, bw, 3, 1.5)
@@ -291,7 +292,7 @@ export function createSchool(canvas: HTMLCanvasElement, seed = 7) {
       if (b.len > from + 1) {
         const ux = Math.sin(b.ta)
         const uy = Math.cos(b.ta)
-        ctx.globalAlpha = 0.55
+        ctx.globalAlpha = colors.line * 1.1
         ctx.strokeStyle = tone
         ctx.lineWidth = 1
         ctx.beginPath()

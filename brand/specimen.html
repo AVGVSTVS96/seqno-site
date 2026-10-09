@@ -19,7 +19,7 @@
   --mono: "Commit Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --apricot: #F8AA6D;
-  --ember: #492515;
+  --dusk: #01222C;
 
   --paper: #FDF9F4;
   --surface: #FFFFFF;
@@ -33,28 +33,32 @@
 
   --field: var(--apricot);
   --field-ink: #25170D;
+  --field-faint: var(--field-ink);
   --bullet: #FFF8ED;
   --grid-dot: rgb(37 23 13 / 0.2);
+  --line-opacity: 0.5;
 
   --grid: 24px;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #140F0C;
-    --surface: #1E1814;
-    --sunk: #1A1511;
+    --paper: #02141B;
+    --surface: #002B36;
+    --sunk: #01222C;
     --ink: #F1EAE3;
-    --ink-2: #B5ACA4;
-    --ink-3: #887E77;
+    --ink-2: #A3B5B8;
+    --ink-3: #7E9094;
     --hair: rgb(241 234 227 / 0.12);
     --hair-2: rgb(241 234 227 / 0.06);
     --rust: var(--apricot);
 
-    --field: var(--ember);
+    --field: var(--dusk);
     --field-ink: var(--apricot);
+    --field-faint: var(--ink);
     --bullet: #F4D9C0;
-    --grid-dot: rgb(248 170 109 / 0.22);
+    --grid-dot: rgb(241 234 227 / 0.14);
+    --line-opacity: 0.8;
   }
 }
 
@@ -71,14 +75,14 @@ p { margin: 0 }
 .label, .mono { font: 400 11px/16px var(--mono); letter-spacing: 0.14em; text-transform: uppercase }
 .mono { color: var(--ink-3) }
 
-.field { background: var(--field) radial-gradient(circle, var(--grid-dot) 1px, transparent 1.4px) 0 0 / var(--grid) var(--grid); color: var(--field-ink) }
+.field { background: var(--field) radial-gradient(circle, var(--grid-dot) 1px, transparent 1.4px) 0 0 / var(--grid) var(--grid); color: var(--field-ink); --faint: var(--field-faint) }
 
 .hero { position: relative; height: clamp(640px, 100svh, 900px); overflow: hidden; isolation: isolate }
 .hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; touch-action: pan-y }
 .bar { position: absolute; z-index: 3; top: 24px; left: 24px; right: 24px; height: 48px; display: flex; align-items: center }
 .bar .lockup { height: 26px; width: auto; filter: url(#tint) }
 .pill { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; border-radius: 999px; font: 550 15px/1 var(--text); text-decoration: none; background: var(--field-ink); color: var(--field); transition: transform 160ms var(--ease) }
-.pill.ghost { background: transparent; color: var(--field-ink); box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--field-ink) 32%, transparent) }
+.pill.ghost { background: transparent; color: var(--field-ink); box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--faint) 32%, transparent) }
 .pill:active { transform: scale(0.97) }
 
 .stack { position: absolute; left: 24px; right: 24px; bottom: 48px; display: grid; justify-items: start; pointer-events: none }
@@ -93,16 +97,16 @@ p { margin: 0 }
 .outline li { position: relative; padding-left: 24px }
 .outline li::before { content: ""; position: absolute; left: 8.5px; top: calc(var(--row, 48px) / 2 - 3.5px); width: 7px; height: 7px; border-radius: 50%; background: currentColor }
 .outline ul { position: relative }
-.outline ul::before { content: ""; position: absolute; left: -12.5px; top: 0; bottom: 4px; width: 1px; background: color-mix(in oklab, currentColor 32%, transparent) }
+.outline ul::before { content: ""; position: absolute; left: -12.5px; top: 0; bottom: 4px; width: 1px; background: color-mix(in oklab, var(--faint, currentColor) 32%, transparent) }
 .actions { margin: 24px 0 0 24px; display: grid; gap: 16px; justify-items: start }
 .actions nav { display: flex; gap: 8px }
-.actions p { font: 400 15px/24px var(--text); color: color-mix(in oklab, var(--field-ink) 72%, var(--field)) }
+.actions p { font: 400 15px/24px var(--text); color: color-mix(in oklab, var(--faint) 72%, var(--field)) }
 
-.odo { display: inline-flex; align-items: center; height: 22px; color: inherit; text-decoration: none; border-radius: 5px; box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 30%, transparent); font: 500 13px/22px var(--mono); letter-spacing: 0; overflow: hidden }
-.odo .no { padding: 0 6px 0 7px; font-weight: 400; font-size: 11px; letter-spacing: 0.04em; box-shadow: inset -1px 0 color-mix(in oklab, currentColor 20%, transparent) }
+.odo { display: inline-flex; align-items: center; height: 22px; color: inherit; text-decoration: none; border-radius: 5px; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--faint, currentColor) 30%, transparent); font: 500 13px/22px var(--mono); letter-spacing: 0; overflow: hidden }
+.odo .no { padding: 0 6px 0 7px; font-weight: 400; font-size: 11px; letter-spacing: 0.04em; box-shadow: inset -1px 0 color-mix(in oklab, var(--faint, currentColor) 20%, transparent) }
 .odo .digits { display: flex }
 .odo .cell { display: block; width: 14px; height: 22px; overflow: hidden; text-align: center }
-.odo .cell + .cell { box-shadow: inset 1px 0 color-mix(in oklab, currentColor 14%, transparent) }
+.odo .cell + .cell { box-shadow: inset 1px 0 color-mix(in oklab, var(--faint, currentColor) 14%, transparent) }
 .odo .strip { display: flex; flex-direction: column }
 .odo .strip span { display: block; height: 22px }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%) }
@@ -133,13 +137,13 @@ p { margin: 0 }
 .logo-main { display: grid; grid-template-columns: 2fr 1fr; gap: 24px }
 .logo-main .card { display: grid; place-items: center; min-height: 312px; padding: 48px 64px; position: relative }
 .logo-main .tile-field { background: var(--apricot); box-shadow: none; color: #25170D }
-.logo-main .tile-night { background: #140F0C; box-shadow: 0 0 0 1px rgb(241 234 227 / 0.08) }
+.logo-main .tile-night { background: #02141B; box-shadow: 0 0 0 1px rgb(241 234 227 / 0.08) }
 .logo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 24px }
 .logo-row .card { height: 168px; display: grid; place-items: center; position: relative }
 .logo-row .card .mono, .logo-main .card .mono, .sizes .mono { position: absolute; left: 16px; bottom: 12px }
 .logo-row .on-field { background: var(--apricot); box-shadow: none }
 .logo-row .on-field .mono { color: rgb(37 23 13 / 0.6) }
-.logo-row .on-night { background: #140F0C }
+.logo-row .on-night { background: #02141B }
 .logo-row .on-night .mono { color: rgb(241 234 227 / 0.5) }
 .ink-tint { filter: url(#tint-ink) }
 .sizes { display: flex; align-items: end; gap: 40px; margin-top: 24px; padding: 32px 32px 48px; position: relative }
@@ -191,16 +195,17 @@ p { margin: 0 }
 
 .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
 .swatch-field { height: 288px; border-radius: 12px; position: relative; overflow: hidden; padding: 24px; display: flex; flex-direction: column; justify-content: space-between }
-.swatch-field.day { --field: var(--apricot); --field-ink: #25170D; --bullet: #FFF8ED; --grid-dot: rgb(37 23 13 / 0.2) }
-.swatch-field.night { --field: var(--ember); --field-ink: var(--apricot); --bullet: #F4D9C0; --grid-dot: rgb(248 170 109 / 0.22) }
+.swatch-field.day { --field: var(--apricot); --field-ink: #25170D; --field-faint: #25170D; --bullet: #FFF8ED; --grid-dot: rgb(37 23 13 / 0.2); --line-opacity: 0.5 }
+.swatch-field.night { --field: var(--dusk); --field-ink: var(--apricot); --field-faint: #F1EAE3; --bullet: #F4D9C0; --grid-dot: rgb(241 234 227 / 0.14); --line-opacity: 0.8 }
 .swatch-field canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0 }
 .swatch-field > * { position: relative; z-index: 1 }
+.swatch-field > .shot { position: absolute; right: -32px; bottom: -48px; width: 52%; aspect-ratio: 1440 / 888; border-radius: 10px; box-shadow: 0 0 0 1px var(--hair), 0 24px 48px -24px rgb(0 0 0 / 0.5) }
 .swatch-field .name { font: 650 40px/48px var(--display); letter-spacing: -0.03em }
 .swatch-field .codes { font: 400 12px/18px var(--mono); letter-spacing: 0.02em; opacity: 0.8 }
 .tokens { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px }
 .token-set { padding: 8px 24px 16px }
 .token-set.day { --s-paper: #FDF9F4; background: #FDF9F4; color: #25170D; box-shadow: 0 0 0 1px rgb(37 23 13 / 0.12) }
-.token-set.night { background: #140F0C; color: #F1EAE3; box-shadow: 0 0 0 1px rgb(241 234 227 / 0.08) }
+.token-set.night { background: #02141B; color: #F1EAE3; box-shadow: 0 0 0 1px rgb(241 234 227 / 0.08) }
 .token-set h3 { margin: 12px 0 8px }
 .token { display: grid; grid-template-columns: 36px 1fr auto auto; gap: 14px; align-items: center; padding: 8px 0; border-top: 1px solid currentColor; border-top-color: color-mix(in oklab, currentColor 8%, transparent); font: 400 12px/18px var(--mono) }
 .token i { width: 36px; height: 24px; border-radius: 6px; box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 14%, transparent) }
@@ -449,10 +454,10 @@ p { margin: 0 }
   </section>
 
   <section class="block">
-    <header><h2>Color</h2><p>Paper, ink and one field color. Apricot by day, ember by night, and the two trade places: on dark, apricot moves into the ink.</p></header>
+    <header><h2>Color</h2><p>Paper, ink and one field color. Apricot by day. By night the field is dusk, one step darker than the app's own dark screenshots, and apricot moves into the ink. Each field is shown with the screenshot it has to hold.</p></header>
     <div class="fields">
-      <div class="swatch-field day field" data-swatch><canvas></canvas><div class="name">Apricot</div><div class="codes">#F8AA6D · oklch(0.80 0.12 58)<br>field, light · ink on it 9.1:1</div></div>
-      <div class="swatch-field night field" data-swatch><canvas></canvas><div class="name">Ember</div><div class="codes">#492515 · oklch(0.31 0.06 45)<br>field, dark · apricot on it 7.0:1</div></div>
+      <div class="swatch-field day field" data-swatch><canvas></canvas><img class="shot" src="../site/src/media/showcase-light-800.webp" alt=""><div class="name">Apricot</div><div class="codes">#F8AA6D · oklch(0.80 0.12 58)<br>field, light · ink on it 9.1:1</div></div>
+      <div class="swatch-field night field" data-swatch><canvas></canvas><img class="shot" src="../site/src/media/showcase-dark-800.webp" alt=""><div class="name">Dusk</div><div class="codes">#01222C · oklch(0.23 0.04 222)<br>field, dark · apricot on it 8.7:1</div></div>
     </div>
     <div class="tokens">
       <div class="card token-set day" data-tokens="day"><h3>Light</h3></div>
@@ -545,7 +550,7 @@ p { margin: 0 }
 const still = new URLSearchParams(location.search).has("still")
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches
 const css = (el, name) => getComputedStyle(el).getPropertyValue(name).trim()
-const colorsOf = (el) => ({ field: css(el, "--field"), bullet: css(el, "--bullet"), ink: css(el, "--field-ink") })
+const colorsOf = (el) => ({ field: css(el, "--field"), bullet: css(el, "--bullet"), ink: css(el, "--field-ink"), line: Number(css(el, "--line-opacity")) })
 const ns = "http://www.w3.org/2000/svg"
 const svgEl = (tag, attrs, parent) => {
   const el = document.createElementNS(ns, tag)
@@ -759,7 +764,7 @@ function drawDiagram(svg) {
 function tokens() {
   const sets = {
     day: [["paper", "#FDF9F4", "page", "—"], ["surface", "#FFFFFF", "cards, screenshots", "—"], ["sunk", "#F8F1EA", "quiet panels", "—"], ["ink", "#25170D", "text, bullets", "16.6"], ["ink-2", "#655449", "secondary text", "6.9"], ["ink-3", "#7A6C61", "labels, hints", "4.8"], ["hair", "rgb(37 23 13 / .12)", "1px rules", "—"], ["rust", "#AE4819", "links, the one path", "5.4"], ["field", "#F8AA6D", "hero, link preview", "—"], ["bullet", "#FFF8ED", "bullets on the field", "—"]],
-    night: [["paper", "#140F0C", "page", "—"], ["surface", "#1E1814", "cards, screenshots", "—"], ["sunk", "#1A1511", "quiet panels", "—"], ["ink", "#F1EAE3", "text, bullets", "16.0"], ["ink-2", "#B5ACA4", "secondary text", "8.5"], ["ink-3", "#887E77", "labels, hints", "4.8"], ["hair", "rgb(241 234 227 / .12)", "1px rules", "—"], ["rust", "#F8AA6D", "links, the one path", "9.9"], ["field", "#492515", "hero, link preview", "—"], ["bullet", "#F4D9C0", "bullets on the field", "—"]],
+    night: [["paper", "#02141B", "page", "—"], ["surface", "#002B36", "cards, screenshots", "—"], ["sunk", "#01222C", "quiet panels", "—"], ["ink", "#F1EAE3", "text, bullets", "15.8"], ["ink-2", "#A3B5B8", "secondary text", "8.8"], ["ink-3", "#7E9094", "labels, hints", "5.6"], ["hair", "rgb(241 234 227 / .12)", "1px rules", "—"], ["rust", "#F8AA6D", "links, the one path", "9.8"], ["field", "#01222C", "hero", "—"], ["bullet", "#F4D9C0", "bullets on the field", "—"]],
   }
   for (const [name, rows] of Object.entries(sets)) {
     const el = document.querySelector(`[data-tokens="${name}"]`)
@@ -774,7 +779,10 @@ function tokens() {
 
 function swatches() {
   for (const el of document.querySelectorAll("[data-swatch]")) {
-    const school = createSchool(el.querySelector("canvas"), { seed: 11, count: 4, colors: colorsOf(el), avoid: [{ x: 0, y: 0, w: 260, h: 90 }, { x: 0, y: 220, w: 360, h: 80 }], reduced: true })
+    const base = el.getBoundingClientRect()
+    const shot = el.querySelector(".shot").getBoundingClientRect()
+    const avoid = [{ x: 0, y: 0, w: 260, h: 90 }, { x: 0, y: 220, w: 360, h: 80 }, { x: shot.left - base.left - 24, y: shot.top - base.top - 24, w: shot.width + 48, h: shot.height + 48 }]
+    const school = createSchool(el.querySelector("canvas"), { seed: 11, count: 4, colors: colorsOf(el), avoid, reduced: true })
     school.draw()
   }
 }

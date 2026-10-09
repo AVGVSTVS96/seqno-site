@@ -84,30 +84,38 @@ Display and Text were drawn as one family: Display is tighter for big sizes, Tex
 
 ## Color
 
-Paper, ink and one field color. **Apricot** is seqno's: warm, light and friendly, and nothing like Logseq's teal or Buzz's chartreuse. By night the field becomes **ember**, and the two trade places: apricot moves into the ink.
+Paper, ink and one field color. **Apricot** is seqno's: warm, light and friendly, and nothing like Logseq's teal or Buzz's chartreuse. It's the field by day. By night the field is **dusk**, and apricot moves into the ink.
+
+Dusk comes from the product, not from apricot. seqno's dark theme is Logseq's Solarized dark, so every dark screenshot on the page is deep blue (`#002B36`, `oklch(0.27 0.05 220)`). Darkening apricot gave a brown at the same lightness as those screenshots and the opposite hue, and the two cancelled into mud. Dusk is the screenshots' own blue one step darker, so they sit on it like lit windows, and apricot plays the part Solarized gives its orange: small, light and bright on the deep blue.
 
 | token | light | dark | use |
 | --- | --- | --- | --- |
-| `--paper` | `#FDF9F4` | `#140F0C` | page |
-| `--surface` | `#FFFFFF` | `#1E1814` | cards, screenshot frames |
-| `--sunk` | `#F8F1EA` | `#1A1511` | quiet panels |
-| `--ink` | `#25170D` (16.6:1) | `#F1EAE3` (16.0:1) | text, bullets |
-| `--ink-2` | `#655449` (6.9:1) | `#B5ACA4` (8.5:1) | secondary text |
-| `--ink-3` | `#7A6C61` (4.8:1) | `#887E77` (4.8:1) | labels, hints |
+| `--paper` | `#FDF9F4` | `#02141B` | page |
+| `--surface` | `#FFFFFF` | `#002B36` | cards, screenshot frames (by night the app's own background) |
+| `--sunk` | `#F8F1EA` | `#01222C` | quiet panels, window bars (by night the same as the field) |
+| `--ink` | `#25170D` (16.6:1) | `#F1EAE3` (15.8:1) | text, bullets |
+| `--ink-2` | `#655449` (6.9:1) | `#A3B5B8` (8.8:1) | secondary text |
+| `--ink-3` | `#7A6C61` (4.8:1) | `#7E9094` (5.6:1) | labels, hints |
 | `--hair` | `rgb(37 23 13 / .12)` | `rgb(241 234 227 / .12)` | 1px rules, card rings |
 | `--hair-2` | `rgb(37 23 13 / .06)` | `rgb(241 234 227 / .06)` | row dividers |
-| `--rust` | `#AE4819` (5.4:1) | `#F8AA6D` (9.9:1) | links, the one highlighted path |
-| `--field` | `#F8AA6D` apricot | `#492515` ember | hero, link preview, field swatches |
-| `--field-ink` | `#25170D` (9.1:1) | `#F8AA6D` (7.0:1) | wordmark, tagline and pills on the field |
+| `--rust` | `#AE4819` (5.4:1) | `#F8AA6D` (9.8:1) | links, the one highlighted path |
+| `--field` | `#F8AA6D` apricot | `#01222C` dusk | hero, link preview, field swatches |
+| `--field-ink` | `#25170D` (9.1:1) | `#F8AA6D` (8.7:1) | wordmark, tagline and pills on the field |
+| `--field-faint` | `#25170D` | `#F1EAE3` | what faint lines on the field are mixed from: outlines, the guide, the small print |
 | `--bullet` | `#FFF8ED` | `#F4D9C0` | bullets swimming on the field |
-| `--grid-dot` | `rgb(37 23 13 / .2)` | `rgb(248 170 109 / .22)` | the field's dot grid |
+| `--grid-dot` | `rgb(37 23 13 / .2)` | `rgb(241 234 227 / .14)` | the field's dot grid |
+| `--line-opacity` | `0.5` | `0.8` | the hero's text bars and tails |
+| `--selection` | apricot at 55% | `#094B5A` | selected text |
 
-Contrast ratios are against `--paper` (or the field, for field tokens). OKLCH sources: apricot `oklch(0.80 0.12 58)`, ember `oklch(0.31 0.06 45)`, ink `oklch(0.22 0.03 55)`, paper `oklch(0.985 0.008 75)`.
+Contrast ratios are against `--paper` (or the field, for field tokens). OKLCH sources: apricot `oklch(0.80 0.12 58)`, dusk `oklch(0.23 0.04 222)`, dark paper `oklch(0.18 0.03 224)`, ink `oklch(0.22 0.03 55)`, paper `oklch(0.985 0.008 75)`.
 
-- Apricot is a **field**, not an accent. It fills the hero and the link preview; it never tints buttons or text on paper (use `--rust` there).
+- Apricot is a **field**, not an accent. By day it fills the hero and the link preview; it never tints buttons or text on paper (use `--rust` there). By night it's the ink on dusk.
 - One highlight per view: `--rust` marks the thing being talked about, like one path in a diagram or the active bullet. Never a second accent color.
 - Dark is the same tokens swapped, never a second design. The site follows `prefers-color-scheme` and switches with `light-dark()` or the media query.
-- Never Logseq's teal (`#002b36`, `#85c8c8` family) anywhere, including dark mode.
+- **Dark is built around the dark screenshots.** Every dark surface is their blue (hue 220 to 225) or close to neutral, never warm, and each layer toward you is lighter: paper 0.18, field and panels 0.23, screenshots 0.27. Window bars and quiet panels are the field's blue.
+- **Apricot stays light.** Never darken it, and never lay it over blue at low opacity: half apricot, half blue is a gray-brown, and a 30% outline is khaki. Faint things on dusk (the dot grid, outlines, the small print) are mixed from cream instead, and the hero's lines run at 80%.
+- Before changing a dark token, render the whole page in dark at real size and look at every place a screenshot meets the page. `site/shots/dark-fix/` shows what goes wrong when only the hero is checked.
+- Never Logseq's logo, or its teal (`#85C8C8` family) in seqno's own marks. The deep blue is there because seqno's own screenshots bring it.
 
 ## Grid and spacing
 
@@ -159,7 +167,7 @@ In stiffness and damping (mass 1): fast 685 / 52.4, base 224 / 25.4, slow 76 / 1
 
 The hero is a dot-grid page in the field color with little outlines on it. On load the bullets start scattered and drift as a loose school, then curve home and land on the grid as outlines. Move the pointer through them and the nearby ones scatter and swim off; leave them alone and each returns to its row on its own. As the bullets land, the big wordmark comes into focus. The reference implementation is `hero.js` (`createSchool(canvas, options)`); the specimen runs it live.
 
-- **Bullets** are 6–7.6px discs in `--bullet`, 12% in `--field-ink`. Each has a 1px tail that hangs below it and swings opposite its velocity on a spring (stiffness 140, damping 9: a little secondary motion). When a bullet lands as a parent, its tail grows into the guide line down to its last child; a leaf's tail shrinks away. A faint bar of text (3px, 50% opacity, on a field-colored underlay that hides the grid dots) grows to the right of each landed bullet. Moving bullets stretch up to 1.45× along their velocity.
+- **Bullets** are 6–7.6px discs in `--bullet`, 12% in `--field-ink`. Each has a 1px tail that hangs below it and swings opposite its velocity on a spring (stiffness 140, damping 9: a little secondary motion). When a bullet lands as a parent, its tail grows into the guide line down to its last child; a leaf's tail shrinks away. A faint bar of text (3px at `--line-opacity`, 50% on apricot and 80% on dusk, on a field-colored underlay that hides the grid dots) grows to the right of each landed bullet. Moving bullets stretch up to 1.45× along their velocity.
 - **Outlines:** 9 of them at 1440 × 900, 3 to 6 rows each, depth 0–2, text bars 3–7 columns wide, placed on the grid away from the tagline, wordmark, label and top bar. Scale the count with area (about one per 130,000 px², 4 to 12).
 - **Swimming:** a smooth flow field at 34 px/s, plus alignment and separation with neighbors within 56px, plus a soft wall 48px from each edge.
 - **Waking:** a bullet within 150px of a pointer moving faster than 40 px/s gets its "loose" value set near 1. Loose decays with τ = 1.4 s. Loose bullets swim; settled bullets home in. The blend uses smoothstep on the loose value.

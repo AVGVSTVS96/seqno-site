@@ -6,7 +6,7 @@
     seed: 7,
     count: 9,
     avoid: [],
-    colors: { field: "#F8AA6D", bullet: "#FFF8ED", ink: "#25170D" },
+    colors: { field: "#F8AA6D", bullet: "#FFF8ED", ink: "#25170D", line: 0.5 },
     inkShare: 0.12,
     spread: [90, 300],
     swim: 34,
@@ -213,7 +213,7 @@
           ctx.globalAlpha = s
           ctx.fillStyle = c.field
           ctx.fillRect(b.x + 9, b.y - 3.5, bw + 4, 7)
-          ctx.globalAlpha = 0.5 * s
+          ctx.globalAlpha = c.line * s
           ctx.fillStyle = tone
           ctx.beginPath()
           ctx.roundRect(b.x + 11, b.y - 1.5, bw, 3, 1.5)
@@ -223,7 +223,7 @@
         if (b.len > from + 1) {
           const ux = Math.sin(b.ta)
           const uy = Math.cos(b.ta)
-          ctx.globalAlpha = 0.55
+          ctx.globalAlpha = c.line * 1.1
           ctx.strokeStyle = tone
           ctx.lineWidth = 1
           ctx.beginPath()
