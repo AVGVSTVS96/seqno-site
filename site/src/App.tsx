@@ -1,8 +1,9 @@
 import type { ReactNode } from "react"
-import { Actions } from "./Actions.tsx"
+import { Actions, app } from "./Actions.tsx"
 import { Folder } from "./Folder.tsx"
 import { repo } from "./github.ts"
 import { Hero } from "./hero/Hero.tsx"
+import { live } from "./live.ts"
 import { Loop, Picture } from "./Media.tsx"
 import { reveal } from "./reveal.ts"
 
@@ -124,21 +125,34 @@ function Intro() {
 
 function Showcase() {
   return (
-    <figure className="showcase">
-      <div className="window">
-        <div className="chrome" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <span>seqno-app.vercel.app</span>
+    <figure className="showcase" ref={live}>
+      <div className="slot">
+        <div className="window">
+          <div className="chrome">
+            <i aria-hidden="true" />
+            <i aria-hidden="true" />
+            <i aria-hidden="true" />
+            <a href={app}>seqno-app.vercel.app</a>
+            <button className="zoom" type="button" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 4h5v5M9 20H4v-5M20 4l-6 6M4 20l6-6" />
+              </svg>
+              <span>Full screen</span>
+            </button>
+          </div>
+          <div className="screen">
+            <Picture
+              name="showcase"
+              alt="A seqno page with properties, headings, links, tags and nested blocks"
+              width={1440}
+              height={888}
+              sizes="(min-width: 1176px) 1128px, calc(100vw - 48px)"
+            />
+            <button className="shield" type="button" aria-label="Try seqno right here">
+              <span>Click to try it</span>
+            </button>
+          </div>
         </div>
-        <Picture
-          name="showcase"
-          alt="A seqno page with properties, headings, links, tags and nested blocks"
-          width={1440}
-          height={888}
-          sizes="(min-width: 1176px) 1128px, calc(100vw - 48px)"
-        />
       </div>
       <figcaption ref={reveal}>
         Looks and feels like Logseq, and opens your Logseq graphs.
