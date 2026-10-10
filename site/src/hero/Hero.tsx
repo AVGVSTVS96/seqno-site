@@ -83,8 +83,9 @@ export function Hero() {
           </svg>
         </a>
         <p className="credit-note" id="credit-note" role="tooltip">
-          The first time I opened Buzz, I sat there chasing its bees around with my cursor. This
-          hero is my thank-you note to it: more flattery than imitation.
+          The first time I opened Buzz, I sat there in pure delight, chasing its bees around with my
+          cursor. It's one of the most beautiful things I've seen on the web. This hero is my
+          thank-you note to it, and I hope it reads as flattery more than imitation.
           <span>bassim</span>
         </p>
       </aside>
