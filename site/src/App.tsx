@@ -93,6 +93,35 @@ const roadmap = [
   ["later", "iOS with iCloud Drive, and a desktop app."],
 ] as const
 
+function Intro() {
+  return (
+    <section className="intro">
+      <ul className="tagline outline">
+        <li ref={reveal}>
+          A local-first outliner, rebuilt to be minimal, solid and clean.
+          <ul>
+            <li ref={reveal}>It's early, so keep your real notes where they are for now.</li>
+          </ul>
+        </li>
+      </ul>
+      <div className="actions" ref={reveal}>
+        <Actions />
+        <p className="browser">
+          <span data-for="chromium">
+            Runs in Chrome and Edge. Your notes never leave your device.
+          </span>
+          <span data-for="other">
+            seqno runs in Chrome and Edge for now. Open this page in one of them to try it.
+          </span>
+          <span data-for="ios">
+            Try it on a computer for now, in Chrome or Edge. The iOS app comes later.
+          </span>
+        </p>
+      </div>
+    </section>
+  )
+}
+
 function Showcase() {
   return (
     <figure className="showcase">
@@ -231,6 +260,7 @@ export function App() {
     <>
       <Hero />
       <main className="page">
+        <Intro />
         <Showcase />
         <Note />
         <Features />

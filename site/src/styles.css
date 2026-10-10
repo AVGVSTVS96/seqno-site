@@ -367,7 +367,7 @@ code {
 
 .hero {
   position: relative;
-  height: clamp(640px, 100svh, 900px);
+  height: max(560px, 100svh);
   overflow: hidden;
   isolation: isolate;
   --rust: var(--field-ink);
@@ -410,7 +410,7 @@ code {
   position: absolute;
   left: 24px;
   right: 24px;
-  bottom: 48px;
+  bottom: 80px;
   display: grid;
   justify-items: start;
   pointer-events: none;
@@ -431,7 +431,7 @@ code {
 
 .word {
   z-index: 1;
-  width: min(68vw, 1000px, (max(100svh, 640px) - 400px) * 3.6);
+  width: min(82vw, 1440px, (max(100svh, 560px) - 280px) * 3.6);
   aspect-ratio: 2610 / 720;
   margin-left: 6px;
 }
@@ -454,31 +454,101 @@ code {
 }
 
 .tagline {
-  margin-top: 24px;
-  font: 450 30px/48px var(--display);
+  font: 450 34px/52px var(--display);
   letter-spacing: -0.02em;
 }
 
 .tagline li {
-  --row: 48px;
+  --row: 52px;
   --size: 7px;
 }
 
 .actions {
-  margin: 24px 0 0 24px;
+  margin-left: 24px;
   display: grid;
   gap: 16px;
   justify-items: start;
 }
 
-.hero .pills {
-  --pill: var(--field-ink);
-  --pill-text: var(--field);
-}
-
 .browser {
   font: 400 15px/24px var(--text);
-  color: color-mix(in oklab, var(--faint) 76%, var(--field));
+  color: var(--ink-3);
+}
+
+.credit {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 24px;
+}
+
+.credit a {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 0;
+  font: 400 11px/16px var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: color-mix(in oklab, var(--field-ink) 76%, var(--field));
+  transition: color 0.16s var(--ease);
+}
+
+.credit a:hover,
+.credit a:focus-visible {
+  color: var(--field-ink);
+}
+
+.credit svg {
+  width: 12px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.credit-note {
+  position: absolute;
+  right: 0;
+  bottom: 100%;
+  width: min(300px, calc(100vw - 48px));
+  margin: 0 0 4px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--field-ink);
+  color: var(--field);
+  font: 400 14px/21px var(--text);
+  transform-origin: 100% 100%;
+  opacity: 0;
+  transform: translateY(4px) scale(0.96);
+  pointer-events: none;
+  transition:
+    opacity 0.16s var(--ease) 0.2s,
+    transform 0.33s var(--spring-fast) 0.2s;
+}
+
+.credit-note span {
+  display: block;
+  margin-top: 8px;
+  font-weight: 550;
+}
+
+.credit:hover .credit-note,
+.credit:focus-within .credit-note {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0.08s;
+}
+
+.intro {
+  display: grid;
+  gap: 32px;
+  justify-items: start;
+  padding: 24px 0 8px;
 }
 
 .browser span {
@@ -494,6 +564,7 @@ code {
 @media (prefers-reduced-motion: reduce) {
   .pill,
   .odo .strip,
+  .credit-note,
   .hero canvas {
     transition: none;
   }
@@ -510,23 +581,11 @@ code {
 
 @media (prefers-reduced-motion: no-preference) {
   .stack .label,
-  .word,
-  .tagline > li,
-  .tagline ul li,
-  .actions {
+  .word {
     animation: rise 0.54s var(--spring-base) backwards;
   }
   .word {
     animation-delay: 0.08s;
-  }
-  .tagline > li {
-    animation-delay: 0.16s;
-  }
-  .tagline ul li {
-    animation-delay: 0.24s;
-  }
-  .actions {
-    animation-delay: 0.32s;
   }
 }
 

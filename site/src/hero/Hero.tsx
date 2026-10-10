@@ -1,4 +1,3 @@
-import { Actions } from "../Actions.tsx"
 import { Odometer } from "../Odometer.tsx"
 import { run, type Box } from "./school.ts"
 
@@ -75,29 +74,20 @@ export function Hero() {
           <span className="crisp" />
           <span className="sr">seqno</span>
         </h1>
-        <ul className="tagline outline" data-avoid>
-          <li>
-            A local-first outliner, rebuilt to be minimal, solid and clean.
-            <ul>
-              <li>It's early, so keep your real notes where they are for now.</li>
-            </ul>
-          </li>
-        </ul>
-        <div className="actions" data-avoid>
-          <Actions />
-          <p className="browser">
-            <span data-for="chromium">
-              Runs in Chrome and Edge. Your notes never leave your device.
-            </span>
-            <span data-for="other">
-              seqno runs in Chrome and Edge for now. Open this page in one of them to try it.
-            </span>
-            <span data-for="ios">
-              Try it on a computer for now, in Chrome or Edge. The iOS app comes later.
-            </span>
-          </p>
-        </div>
       </div>
+      <aside className="credit" data-avoid>
+        <a href="https://buzz.xyz" aria-describedby="credit-note">
+          Inspired by Buzz{" "}
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17 7 7 17M8 7h9v9" />
+          </svg>
+        </a>
+        <p className="credit-note" id="credit-note" role="tooltip">
+          The first time I opened Buzz, I sat there chasing its bees around with my cursor. This
+          hero is my thank-you note to it: more flattery than imitation.
+          <span>bassim</span>
+        </p>
+      </aside>
     </header>
   )
 }
