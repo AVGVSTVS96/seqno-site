@@ -46,13 +46,6 @@ export function live(figure: HTMLElement | null) {
     { margin: "0px 0px 25% 0px" },
   )
 
-  const onMessage = (event: MessageEvent<unknown>) => {
-    if (event.source !== frame.contentWindow) return
-    const data = event.data
-    if (typeof data === "object" && data !== null && Reflect.get(data, "type") === "seqno:ready")
-      figure.dataset.state = "live"
-  }
-
   let zoomed = false
   let run = 0
 
@@ -98,6 +91,14 @@ export function live(figure: HTMLElement | null) {
     delete figure.dataset.zoom
     slot.style.height = ""
     zoom.focus()
+  }
+
+  const onMessage = (event: MessageEvent<unknown>) => {
+    if (event.source !== frame.contentWindow) return
+    const data = event.data
+    const type = typeof data === "object" && data !== null ? Reflect.get(data, "type") : null
+    if (type === "seqno:ready") figure.dataset.state = "live"
+    if (type === "seqno:escape" && zoomed) void move(false)
   }
 
   const onClick = () => void move(!zoomed)
