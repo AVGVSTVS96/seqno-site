@@ -76,16 +76,15 @@ export function Hero() {
         </h1>
       </div>
       <aside className="credit" data-avoid>
-        <a href="https://buzz.xyz" aria-describedby="credit-note">
-          Inspired by Buzz{" "}
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M17 7 7 17M8 7h9v9" />
-          </svg>
-        </a>
-        <p className="credit-note" id="credit-note" role="tooltip">
-          The first time I opened Buzz, I sat there in pure delight, chasing its bees around with my
-          cursor. It's one of the most beautiful things I've seen on the web. This hero is my
-          thank-you note to it, and I hope it reads as flattery more than imitation.
+        <button type="button" aria-describedby="credit-note">
+          Inspired by Buzz and Logseq
+        </button>
+        <p className="credit-note" id="credit-note">
+          I fell for <a href="https://logseq.com">Logseq</a>'s design from the start: beautiful, and
+          built on writing one block after another. seqno is me trying to give that a strong, solid
+          home. And the first time I opened <a href="https://buzz.xyz">Buzz</a>, I sat there in pure
+          delight, chasing its bees around with my cursor. This hero is my thank-you to it. I hope
+          all of it reads as flattery more than imitation.
           <span>bassim</span>
         </p>
       </aside>

@@ -482,39 +482,28 @@ code {
   bottom: 24px;
 }
 
-.credit a {
-  display: flex;
-  gap: 6px;
-  align-items: center;
+.credit button {
   padding: 8px 0;
+  border: 0;
+  background: none;
+  cursor: default;
   font: 400 11px/16px var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  text-decoration: none;
   color: color-mix(in oklab, var(--field-ink) 76%, var(--field));
   transition: color 0.16s var(--ease);
 }
 
-.credit a:hover,
-.credit a:focus-visible {
+.credit button:hover,
+.credit button:focus-visible {
   color: var(--field-ink);
-}
-
-.credit svg {
-  width: 12px;
-  height: 12px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 .credit-note {
   position: absolute;
   right: 0;
   bottom: 100%;
-  width: min(300px, calc(100vw - 48px));
+  width: min(320px, calc(100vw - 48px));
   margin: 0 0 4px;
   padding: 14px 16px;
   border-radius: 12px;
@@ -528,6 +517,11 @@ code {
   transition:
     opacity 0.16s var(--ease) 0.2s,
     transform 0.33s var(--spring-fast) 0.2s;
+}
+
+.credit-note a {
+  color: inherit;
+  text-underline-offset: 3px;
 }
 
 .credit-note span {
