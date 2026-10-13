@@ -2,7 +2,7 @@ import { inView } from "motion"
 import { app } from "./Actions.tsx"
 import { reduced } from "./reveal.ts"
 
-const bar = 40
+const bar = 32
 const px = (n: number) => `${n}px`
 const ease = "cubic-bezier(0.32, 0.72, 0, 1)"
 
@@ -40,7 +40,7 @@ export function live(figure: HTMLElement | null) {
     figure,
     () => {
       stopLoading()
-      frame.src = `${app}/?embed`
+      frame.src = `${app}?embed`
       screen.append(frame)
     },
     { margin: "0px 0px 25% 0px" },

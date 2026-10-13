@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { Actions, app } from "./Actions.tsx"
+import { Actions } from "./Actions.tsx"
 import { Folder } from "./Folder.tsx"
 import { repo } from "./github.ts"
 import { Hero } from "./hero/Hero.tsx"
@@ -129,10 +129,6 @@ function Showcase() {
       <div className="slot">
         <div className="window">
           <div className="chrome">
-            <i aria-hidden="true" />
-            <i aria-hidden="true" />
-            <i aria-hidden="true" />
-            <a href={app}>seqno-app.vercel.app</a>
             <button className="zoom" type="button" aria-expanded="false">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M15 4h5v5M9 20H4v-5M20 4l-6 6M4 20l6-6" />

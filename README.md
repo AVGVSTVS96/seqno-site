@@ -1,6 +1,6 @@
 # seqno-site
 
-The homepage for [seqno](https://github.com/AVGVSTVS96/seqno), live at [seqno.vercel.app](https://seqno.vercel.app).
+The homepage for [seqno](https://github.com/AVGVSTVS96/seqno), live at [seqno.vercel.app](https://seqno.vercel.app). The web app itself is at [seqno.vercel.app/app](https://seqno.vercel.app/app/): `site/public/vercel.json` rewrites `/app/*` to the app's own Vercel project, so the page and the app share an origin and the live demo on the page shares its storage with the app.
 
 - `brand/`: the logo, palette, type and how they're used ([BRAND.md](brand/BRAND.md))
 - `copy/`: the words on the page and the launch post

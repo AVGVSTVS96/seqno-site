@@ -56,6 +56,7 @@ export default defineConfig(async () => {
   return {
     plugins: [react(), prerender(), siteUrl()],
     define: { __COMMIT_COUNT__: String(count) },
+    server: { proxy: { "/app": { target: "https://seqno.vercel.app", changeOrigin: true } } },
     build: { target: "es2022", assetsInlineLimit: 0 },
     fmt: { semi: false },
     lint: {

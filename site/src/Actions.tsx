@@ -1,6 +1,6 @@
 import { repo } from "./github.ts"
 
-export const app = "https://seqno-app.vercel.app"
+export const app = "/app/"
 
 export function Actions() {
   return (
